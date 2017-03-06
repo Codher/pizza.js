@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <title>Vue.js Example 03</title>
+        <link rel="stylesheet" type="text/css" href="styles/site.css">
+         <script src="lib/vue@2.2.1.js"></script>
+    </head>
+
+    <body>
+        <ul class="shelf">
+            <li v-for="book in books">{{book.title}}</li>
+        </ul>
+        <script>
+            var app = new Vue({
+                el: '.shelf',
+                data: function () {
+                    return {
+                        books: [
+                            { title: 'Microwaving for one' },
+                            { title: 'I am almost Italian '},
+                            { title: '100 pastas '},
+                            { title: 'Silver spoon '}
+                        ]
+                    };
+                }
+            });
+        </script>
+    </body>
+</html>
+<!--
+    Example 03:
+        Create a list of ingredients for your Pizza:
+            - Title of your Pizza
+            - List of ingredients: 
+                - Name
+                - Quantity
+            - Total time
+->

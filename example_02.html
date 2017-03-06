@@ -1,0 +1,56 @@
+<html>
+    <head>
+        <title>Vue.js Example 02</title>
+        <link rel="stylesheet" type="text/css" href="styles/site.css">
+        <script src="lib/vue@2.2.1.js"></script>
+        <style>
+            .article {
+                background: #eee;
+                font-size: 20px;
+                padding: 10px 25px;
+                border: 1px solid #ddd;
+                width: 350px;
+                height: 400px;
+                border-radius: 4px;
+                margin: 4px;
+            }
+            .article header {
+                font-size: 16px;
+            }
+
+            .article .body {
+                font-size: 14px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <article class="article">
+            <header>
+                <h1> {{ title }}</h1>
+            </header>
+            <p class="body" v-html="content"></p>
+        </article>
+        <script>
+            var app = new Vue({
+                el: 'article',
+                data: function () {
+                    return {
+                        title: 'Making our first Pizza !',
+                        content: '<i>All The good things are already in</i>:<br/><br/> Vue </br> CSS'
+                    };
+                }
+            });
+        </script>
+    </body>
+</html>
+
+<!--
+    Example 02:
+        Make your own business card:
+            Name
+            Email
+            Address
+            Phone number
+            Job title
+->

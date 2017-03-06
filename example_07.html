@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <title>Vue.js Example 07</title>
+        <link rel="stylesheet" type="text/css" href="styles/site.css">
+         <script src="lib/vue@2.2.1.js"></script>
+
+    </head>
+
+    <body>
+        <div id="app">
+            <div>We Serve: </div>
+            <pizza-item type="margherita"></pizza-item>
+        </div>
+        <script>
+            Vue.component('pizza-item', {
+                props: ['type'],
+                template: '<div> {{ type }} </div>'
+            });
+
+            new Vue({
+                el: '#app'
+            });
+        </script>
+    </body>
+</html>
+<!--
+    Example 07:
+        - Use the list from the previous example.
+        - Add a component (Add to cart).
+        - When clicking it should display the amount ordered
+->

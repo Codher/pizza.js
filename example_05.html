@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <title>Vue.js Example 05</title>
+        <link rel="stylesheet" type="text/css" href="styles/site.css">
+        <script src="lib/vue@2.2.1.js"></script>
+    </head>
+
+    <body>
+        <div id="app">
+           <p> Original Greeting: "{{ greeting }}"</p>
+           <p> Reverse Greeting: "{{ reverseGreeting }}"</p>
+        </div>
+        <script>
+            var app = new Vue({
+                el: '#app',
+                data: function () {
+                    return {
+                        greeting: 'Pizza !'
+                    }
+                },
+                computed: {
+                    reverseGreeting: function () {
+                        return this.greeting.split('').reverse().join('');
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>
+<!--
+    Example 05:
+        Make 3 different kind of computed Greetings:
+            - Reverse
+            - Uppercase
+            - Appending Hello to the beginning
+->

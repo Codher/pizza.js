@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <title>Vue.js Example 04</title>
+        <link rel="stylesheet" type="text/css" href="styles/site.css">
+        <script src="lib/vue@2.2.1.js"></script>
+        <style>
+            input, button {
+                padding: 10px 15px;
+                font-size: 16px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="app">
+            <input v-model="message">
+            <button v-on:click="reverseGreeting">Reverse Greeting</button>
+        </div>
+        <script>
+            var app = new Vue({
+                el: '#app',
+                methods: {
+                    reverseGreeting: function () {
+                        var reverseMsg = this.message.split('').reverse().join('');
+                        alert(reverseMsg);
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>
+<!--
+    Example 04:
+        Make 3 different kind of Greetings:
+            - Reverse
+            - Uppercase
+            - Appending Hello to the beginning
+->
