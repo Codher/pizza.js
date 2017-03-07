@@ -1,0 +1,82 @@
+<html>
+    <head>
+        <title>Vue.js Example 09</title>
+        <link rel="stylesheet" type="text/css" href="styles/site.css">
+         <script src="lib/vue@2.2.1.js"></script>
+         <style>
+            #app {
+                width: 500px;
+                padding: 15px 25px;
+                text-align: left;
+            }
+
+            .title {
+                font-size: 24px;
+                font-family: Georgia,serif;
+                font-style: italic;
+                margin: 0 0 25px;
+                text-decoration: underline;
+            }
+
+            .ingredient {
+                font-size: 20px;
+                margin-bottom: 5px;
+             }
+
+             .ingredient.done {
+                text-decoration: line-through;
+             }
+         </style>
+    </head>
+
+    <body>
+        <div id="app">
+            <div class="title">Pizza Ingredients (Buy):</div>
+            <pizza-ingredient v-for="ingredient in ingredients" v-bind:ingredient="ingredient"></pizza-ingredient>
+        </div>
+        <script>
+
+            Vue.component('pizza-ingredient', {
+                template: '<div class="ingredient" v-bind:class="classOptions">{{ingredient.name}} ({{ingredient.quantity}})</div>',
+                props: ['ingredient'],
+                computed: {
+                    classOptions: function () {
+                        return {
+                            done: this.ingredient.status === 'cart'
+                        }
+                    }
+                }
+            });
+
+            var app = new Vue({
+                el: '#app',
+                data: function () {
+                    return {
+                        ingredients: [
+                            { name: 'Strong bread flour', quantity: '250g', status: 'cart'},
+                            { name: 'Dried yeast', quantity: '2 teaspoons' , status: 'buy'},
+                            { name: 'Caster sugar', quantity: '1 teaspoon' , status: 'buy'},
+                            { name: 'Olive oil', quantity: '' , status: 'buy'},
+                            { name: 'Garlic', quantity: '2 cloves' , status: 'cart'},
+                            { name: 'Tin of chopped tomatoes', quantity: '1 x 400 g' , status: 'buy'},
+                            { name: 'Sprigs of fresh basil', quantity: 'a dash' , status: 'cart'},
+                        ]
+                    };
+                }
+            });
+
+            
+        </script>
+    </body>
+<!--
+    Example 09:
+        Create a list of Pizza
+        Each Pizza should have:
+            - Name
+            - Price
+            - Picture
+            - sale (true / false)
+
+        if the pizza is in sale:
+            - Name should be bold
+-->
