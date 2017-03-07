@@ -12,6 +12,11 @@
                 margin: 55px auto;
                 transition: background-color 0.5s ease;
              }
+             button {
+                display: inline-block;
+                font-size: 14px;
+                padding: 10px 15px;
+             }
          </style>
     </head>
 
@@ -20,11 +25,12 @@
             <div class="cube" v-bind:style="{backgroundColor: color}"></div>
             <red-btn v-on:color="makeRed"></red-btn>
             <green-btn v-on:color="makeGreen"></green-btn>
+            <orange-btn v-on:color="makeOrange"></orange-btn>
             <white-btn v-on:color="makeWhite"></white-btn>
         </div>
         <script>
             Vue.component('red-btn', {
-                template: '<input type="button" value="red" v-on:click="change"/>',
+                template: '<button v-on:click="change">Red</button>',
                 methods: {
                     change: function () {
                         this.$emit('color');
@@ -33,7 +39,7 @@
             });
 
             Vue.component('green-btn', {
-                template: '<input type="button" value="green" v-on:click="change"/>',
+                template: '<button v-on:click="change">Green</button>',
                 methods: {
                     change: function () {
                         this.$emit('color');
@@ -42,7 +48,16 @@
             });
 
             Vue.component('white-btn', {
-                template: '<input type="button" value="white" v-on:click="change"/>',
+                template: '<button v-on:click="change">White</button>',
+                methods: {
+                    change: function () {
+                        this.$emit('color');
+                    }
+                }
+            });
+
+            Vue.component('orange-btn', {
+                template: '<button v-on:click="change">orange</button>',
                 methods: {
                     change: function () {
                         this.$emit('color');
@@ -66,6 +81,9 @@
                     },
                     makeWhite: function () {
                         this.color = 'white';
+                    },
+                    makeOrange: function () {
+                        this.color = 'orange';
                     }
                 }
             });
@@ -73,8 +91,14 @@
     </body>
 </html>
 <!--
+    Example 08 (1):
+        - Refactor this example
+        - Make a component that takes a color property
+        - When clicked it should change the cube's color
+-->
+<!--
     Example 08:
         - Take the list from the previous example
         - Create a summary of total pizza ordered
         - Summary should change when increase and decrease amount of each pizza
-->
+-->
