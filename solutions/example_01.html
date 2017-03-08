@@ -1,0 +1,34 @@
+<html>
+    <head>
+        <title>Vue.js Example 01</title>
+        <link rel="stylesheet" type="text/css" href="../styles/site.css">
+         <script src="../lib/vue@2.2.1.js"></script>
+        <style>
+            #message {
+                margin-top: 50px;
+                text-align: center;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="message">
+            {{ greeting }}
+        </div>
+        <script>
+            var app = new Vue({
+                el: '#message',
+                data: function () {
+                    return {
+                        greeting: 'Hello CodHer, My name is: TheLaz !'
+                    };
+                }
+            });
+        </script>
+    </body>
+</html>
+<!--
+    Example 01:
+        Write your own Greeting:
+            Hello CodHer, My name is: [your name]
+-->
