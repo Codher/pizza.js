@@ -1,0 +1,83 @@
+<html>
+    <head>
+        <title>Vue.js Example 10</title>
+        <link rel="stylesheet" type="text/css" href="styles/site.css">
+         <script src="lib/vue@2.2.1.js"></script>
+         <style>
+            #app {
+                width: 500px;
+                padding: 15px 25px;
+                text-align: left;
+            }
+
+            .panel input, .panel button {
+                font-size: 14px;
+            }
+
+            .panel input {
+                padding: 10px 15px;
+                width: 300px;
+            }
+
+            .panel button {
+                margin-left: 5px;
+                padding: 5px 10px;
+            }
+
+         </style>
+    </head>
+
+    <body>
+        <div id="app">
+            <game-guess v-on:thenumber="checkNumber"></game-guess>
+            <div v-if="isCorrect">
+                Correct: {{number}}
+            </div>
+            <div v-if="!isCorrect && hasGuessed">
+                Sorry, Guess again
+            </div>
+        </div>
+        <script>
+            var gameGuess = Vue.component('game-guess', {
+                template: '<div class="panel"><input type="text" v-model="answer" placeholder="enter a number between 1 and 3"></input><button v-on:click="guess">Guess!</button></div>',
+                methods: {
+                    guess: function () {
+                        this.$emit('thenumber', this.answer);
+                    }
+                }
+            });
+
+            var app = new Vue({
+                el: '#app',
+                data: function () {
+                    return {
+                        number: 0, //Some default value
+                        isCorrect: false,
+                        hasGuessed: false
+                    }
+                },
+                created: function () {
+                    this.number = Math.floor((Math.random() * 3) + 1);
+                },
+                components: {
+                    'game-guess': gameGuess
+                },
+                methods: {
+                    checkNumber: function (result) {
+                        this.isCorrect = (this.number == result);
+                        this.hasGuessed = true;
+                    }
+                }
+            });
+        </script>
+    </body>
+<!-- 
+    Example 10:
+    Create a login screen:
+        - Textbox where the user enters password
+        - Button to login
+
+        If the user enters "pizza1234"
+        hide the login and show "Welcom to our Pizza place !"
+        else display a message "try again" above the textbox
+-->
