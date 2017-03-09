@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <title>Vue.js Example 03</title>
+        <link rel="stylesheet" type="text/css" href="../styles/site.css">
+         <script src="../lib/vue@2.2.1.js"></script>
+    </head>
+
+    <body>
+        <ul class="shelf">
+        <h1>{{ title }}</h1>
+            <li v-for="ingredient in ingredients">
+                {{ ingredient.title }} - {{ ingredient.quantity }}
+            </li>
+        </ul>
+        <script>
+            var app = new Vue({
+                el: '.shelf',
+                data: function () {
+                    return {
+                        title: 'Pizza margherita in 4 easy steps',
+                        ingredients: [
+                            { title: 'strong bread flour', quantity: '300g' },
+                            { title: 'instant yeast', quantity: '1 tsp' },
+                            { title: 'olive oil', quantity: '1 tbsp' },
+                            { title: 'garlic clove, crushed', quantity: '1' },
+                            { title: 'ball mozzarella, sliced', quantity: '125g'}
+                        ],
+                        preptime: '25 MINS',
+                        cooktime: '10 MINS'
+                    };
+                }
+            });
+        </script>
+    </body>
+</html>

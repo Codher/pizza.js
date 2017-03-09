@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <title>Vue.js Example 04</title>
+        <link rel="stylesheet" type="text/css" href="../styles/site.css">
+        <script src="../lib/vue@2.2.1.js"></script>
+        <style>
+            input, button {
+                padding: 10px 15px;
+                font-size: 16px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="app">
+            <input v-model="message">
+            <button v-on:click="reverseGreeting">Reverse Greeting</button>
+            <button v-on:click="uppercaseGreeting">Uppercase Greeting</button>
+            <button v-on:click="helloGreeting">Hello Greeting</button>
+            <div>
+                My Message: {{ message}} <br/>
+                My Greeting: {{ greeting }}
+            </div>
+        </div>
+        <script>
+            var app = new Vue({
+                el: '#app',
+                data: function () {
+                    return {
+                        message: '',
+                        greeting: ''
+                    }
+                },
+                methods: {
+                    reverseGreeting: function () {
+                        this.greeting = this.message.split('').reverse().join('');
+                    },
+                    uppercaseGreeting: function () {
+                        this.greeting = this.message.toUpperCase();
+                    },
+                    helloGreeting: function () {
+                        this.greeting = 'Hello ' + this.message;
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>

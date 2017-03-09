@@ -2,7 +2,7 @@
     <head>
         <title>Vue.js Example 02</title>
         <link rel="stylesheet" type="text/css" href="styles/site.css">
-        <script src="lib/vue@2.2.1.js"></script>
+        <script src="../lib/vue@2.2.1.js"></script>
         <style>
             .article {
                 background: #eee;
@@ -25,19 +25,23 @@
     </head>
 
     <body>
-        <article class="article">
-            <header>
-                <h1> {{ title }}</h1>
-            </header>
-            <p class="body" v-html="content"></p>
-        </article>
+        <div id="app">
+            <h1> {{ name }} </h1>
+            <div>{{ email }}</div>
+            <div>{{ facebook }}</div>
+            <div>{{ phone }}</div>
+            <p v-html="openinghours"></p>
+        </div>
         <script>
             var app = new Vue({
-                el: 'article',
+                el: '#app',
                 data: function () {
                     return {
-                        title: 'Making our first Pizza !',
-                        content: '<i>All The good things are already in</i>:<br/><br/> Vue </br> CSS'
+                        name: 'TheLaz Pizza !',
+                        email: 'thelaz@pizza.com',
+                        facebook: 'facebook.com/thelazpizza',
+                        phone: '+45 40 31 23 44',
+                        openinghours: 'Tuesday - Friday 11AM - 16.45PM <br/> Saturday - Sunday 10AM - 16.45PM'
                     };
                 }
             });
