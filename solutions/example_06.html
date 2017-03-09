@@ -1,0 +1,34 @@
+<html>
+    <head>
+        <title>Vue.js Example 06</title>
+        <link rel="stylesheet" type="text/css" href="../styles/site.css">
+         <script src="../lib/vue@2.2.1.js"></script>
+
+    </head>
+
+    <body>
+        <div id="app">
+            <div> We Serve: </div>
+            <pizza-item v-for="pizza in shop" v-bind:type="pizza.type"></pizza-item>
+        </div>
+        <script>
+            Vue.component('pizza-item', {
+                props: ['type'],
+                template: '<div> {{ type }} </div>'
+            });
+
+            new Vue({
+                el: '#app',
+                data: function () {
+                    return {
+                        shop: [
+                            { type: 'Margherita' },
+                            { type: 'Hawaii' },
+                            { type: 'Veggie'}
+                        ]
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>
