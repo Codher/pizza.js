@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <title>Vue.js Example 07</title>
+        <link rel="stylesheet" type="text/css" href="../styles/site.css">
+         <script src="../lib/vue@2.2.1.js"></script>
+
+    </head>
+
+    <body>
+        <div id="app">
+            <div>We Serve: </div> <br/>
+            <pizza-item 
+                v-for="pizza in list" 
+                v-bind:type="pizza.type">
+            </pizza-item>
+        </div>
+        <script>
+            Vue.component('pizza-item', {
+                props: ['type'],
+                template: '<div><span>{{ type }}</span><input type="button" v-on:click="add" value="+"></input><input type="button" v-on:click="decrease" value="-"></input><span>{{amount}}</span></div>',
+                data: function () {
+                    return {
+                        amount: 0
+                    }
+                },
+                methods: {
+                    add: function () {
+                        this.amount += 1;
+                    },
+                    decrease: function () {
+                        if (this.amount > 0) {
+                            this.amount +=- 1;
+                        }
+                    }
+                }
+            });
+
+            new Vue({
+                el: '#app',
+                data: function () {
+                    return {
+                        list: [
+                            { type: 'margherita' },
+                            { type: 'hawaii' },
+                            { type: 'potato'}
+                        ]
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>
+<!--
+    Example 07:
+        - Use the list from the previous example.
+        - Add a decrease button
+        - When clicking the amount decrease by 1
+        - If the amount is 0, you can not decrease it anymore
+->
