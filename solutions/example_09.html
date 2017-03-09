@@ -41,7 +41,7 @@
         <script>
 
             Vue.component('ze-pizza', {
-                template: '<div class="pizza" v-bind:class="stylingOptions">{{details.name}} - {{details.price}}</div>',
+                template: '<div class="pizza" v-bind:class="stylingOptions">{{details.name}} - {{details.price}}<img v-bind:src="details.picture"/></div>',
                 props: ['details'],
                 computed: {
                     stylingOptions: function () {
@@ -57,9 +57,9 @@
                 data: function () {
                     return {
                         shop: [
-                            { name: 'Margherita', price: '65 dkk', picture: '', sale: 'false' },
-                            { name: 'Hawaii', price: '32 dkk', picture: '', sale: 'true' },
-                            { name: 'Veggie', price: '83 dkk', picture: '', sale: 'true' }
+                            { name: 'Margherita', price: '65 dkk', picture: 'http://www.homemadepizza.tips/wp-content/uploads/2009/11/dsc_5173-256x256.jpg', sale: 'false' },
+                            { name: 'Hawaii', price: '32 dkk', picture: 'https://s-media-cache-ak0.pinimg.com/736x/8f/8a/eb/8f8aeb640b9b3dc509feb0d4e8daad63.jpg', sale: 'true' },
+                            { name: 'Veggie', price: '83 dkk', picture: 'https://bigoven-res.cloudinary.com/image/upload/t_recipe-256/easy-crescent-veggie-pizza-38fe3f.jpg', sale: 'true' }
                         ]
                     };
                 }
