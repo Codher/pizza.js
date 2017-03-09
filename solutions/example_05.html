@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <title>Vue.js Example 05</title>
+        <link rel="stylesheet" type="text/css" href="styles/site.css">
+        <script src="../lib/vue@2.2.1.js"></script>
+    </head>
+
+    <body>
+        <div id="app">
+            <input v-model="message">
+            <p> Original Greeting: "{{ message }}"</p>
+            <p> Reverse Greeting: "{{ reverseGreeting }}"</p>
+            <p> Uppercase Greeting: "{{ uppercaseGreeting }}"</p>
+            <p> Hello Greeting: "{{ helloGreeting }}"</p>
+        </div>
+        <script>
+            var app = new Vue({
+                el: '#app',
+                data: function () {
+                    return {
+                        message: ''
+                    }
+                },
+                computed: {
+                    reverseGreeting: function () {
+                        return this.message.split('').reverse().join('');
+                    },
+                    uppercaseGreeting: function () {
+                        return this.message.toUpperCase();
+                    },
+                    helloGreeting: function () {
+                        return 'Hello ' + this.message;
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>
+<!--
+    Example 05:
+        Make 3 different kind of computed Greetings:
+            - Reverse
+            - Uppercase
+            - Appending Hello to the beginning
+-->
