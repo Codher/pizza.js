@@ -1,0 +1,70 @@
+<html>
+    <head>
+        <title>Vue.js Example 09</title>
+        <link rel="stylesheet" type="text/css" href="../styles/site.css">
+         <script src="../lib/vue@2.2.1.js"></script>
+         <style>
+            #app {
+                width: 500px;
+                padding: 15px 25px;
+                text-align: left;
+            }
+
+            .title {
+                font-size: 24px;
+                font-family: Georgia,serif;
+                font-style: italic;
+                margin: 0 0 25px;
+                text-decoration: underline;
+            }
+
+            .pizza {
+                font-size: 20px;
+                margin-bottom: 5px;
+             }
+
+             .pizza.sale {
+                font-weight: bold;
+                font-size: 40px;
+             }
+         </style>
+    </head>
+
+    <body>
+        <div id="app">
+            <div class="title">My Pizza Shop:</div>
+            <ze-pizza 
+                v-for="pizza in shop" 
+                v-bind:details="pizza">
+            </ze-pizza>
+        </div>
+        <script>
+
+            Vue.component('ze-pizza', {
+                template: '<div class="pizza" v-bind:class="stylingOptions">{{details.name}} - {{details.price}}</div>',
+                props: ['details'],
+                computed: {
+                    stylingOptions: function () {
+                        return {
+                            sale: this.details.sale === 'true'
+                        }
+                    }
+                }
+            });
+
+            var app = new Vue({
+                el: '#app',
+                data: function () {
+                    return {
+                        shop: [
+                            { name: 'Margherita', price: '65 dkk', picture: '', sale: 'false' },
+                            { name: 'Hawaii', price: '32 dkk', picture: '', sale: 'true' },
+                            { name: 'Veggie', price: '83 dkk', picture: '', sale: 'true' }
+                        ]
+                    };
+                }
+            });
+
+            
+        </script>
+    </body>

@@ -37,10 +37,10 @@
         <script>
 
             Vue.component('pizza-ingredient', {
-                template: '<div class="ingredient" v-bind:class="classOptions">{{ingredient.name}} ({{ingredient.quantity}})</div>',
+                template: '<div class="ingredient" v-bind:class="stylingOptions">{{ingredient.name}} ({{ingredient.quantity}})</div>',
                 props: ['ingredient'],
                 computed: {
-                    classOptions: function () {
+                    stylingOptions: function () {
                         return {
                             done: this.ingredient.status === 'cart'
                         }
