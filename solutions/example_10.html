@@ -1,0 +1,79 @@
+<html>
+    <head>
+        <title>Vue.js Example 10</title>
+        <link rel="stylesheet" type="text/css" href="styles/site.css">
+         <script src="../lib/vue@2.2.1.js"></script>
+         <style>
+            #app {
+                width: 500px;
+                padding: 15px 25px;
+                text-align: left;
+            }
+
+            .panel input, .panel button {
+                font-size: 14px;
+            }
+
+            .panel input {
+                padding: 10px 15px;
+                width: 300px;
+            }
+
+            .panel button {
+                margin-left: 5px;
+                padding: 5px 10px;
+            }
+
+         </style>
+    </head>
+
+    <body>
+        <div id="app">
+            <login-screen v-on:login="checkPassword"></login-screen>
+            <div v-if="isCorrect">
+                Welcome to our Pizza Shop !!
+            </div>
+            <div v-if="!isCorrect && hasLoggedin">
+                Please try again ...
+            </div>
+        </div>
+        <script>
+            var loginScreen = Vue.component('game-guess', {
+                template: '<div class="panel"><input type="text" v-model="password" placeholder="Please enter password ..."></input><button v-on:click="login">Login</button></div>',
+                methods: {
+                    login: function () {
+                        this.$emit('login', this.password);
+                    }
+                }
+            });
+
+            var app = new Vue({
+                el: '#app',
+                data: function () {
+                    return {
+                        isCorrect: false,
+                        hasLoggedin: false
+                    }
+                },
+                components: {
+                    'login-screen': loginScreen
+                },
+                methods: {
+                    checkPassword: function (password) {
+                        this.isCorrect = password === 'pizza1234'
+                        this.hasLoggedin = true;
+                    }
+                }
+            });
+        </script>
+    </body>
+<!-- 
+    Example 10:
+    Create a login screen:
+        - Textbox where the user enters password
+        - Button to login
+
+        If the user enters "pizza1234"
+        hide the login and show "Welcom to our Pizza place !"
+        else display a message "try again" above the textbox
+-->
