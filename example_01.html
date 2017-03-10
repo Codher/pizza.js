@@ -1,23 +1,23 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
     <head>
         <title>Vue.js Example 01</title>
+        <link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="styles/site.css">
-         <script src="lib/vue@2.2.1.js"></script>
-        <style>
-            #message {
-                margin-top: 50px;
-                text-align: center;
-            }
-        </style>
+        <script src="lib/vue@2.2.1.js"></script>
     </head>
 
     <body>
-        <div id="message">
-            {{ greeting }}
+        <div id="app">
+            <div class="jumbotron">
+                <div class="container text-center">
+                    <h1>{{ greeting }}</h1>
+                </div>
+            </div>
         </div>
         <script>
             var app = new Vue({
-                el: '#message',
+                el: '#app',
                 data: function () {
                     return {
                         greeting: 'Hello Vue World !'

@@ -1,20 +1,23 @@
 <html>
     <head>
         <title>Vue.js Example 04</title>
+        <link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="styles/site.css">
         <script src="lib/vue@2.2.1.js"></script>
-        <style>
-            input, button {
-                padding: 10px 15px;
-                font-size: 16px;
-            }
-        </style>
     </head>
 
     <body>
         <div id="app">
-            <input v-model="message">
-            <button v-on:click="reverseGreeting">Reverse Greeting</button>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="input-group">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-default" v-on:click="reverseGreeting">Reverse Greeting</button>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Type your greeting..." v-model="message">
+                    </div>
+                </div>
+            </div>
         </div>
         <script>
             var app = new Vue({

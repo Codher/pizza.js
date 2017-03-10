@@ -1,23 +1,31 @@
 <html>
     <head>
         <title>Vue.js Example 07</title>
+        <link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="styles/site.css">
-         <script src="lib/vue@2.2.1.js"></script>
+        <script src="lib/vue@2.2.1.js"></script>
 
     </head>
 
     <body>
         <div id="app">
-            <div>We Serve: </div> <br/>
-            <pizza-item 
-                v-for="pizza in list" 
-                v-bind:type="pizza.type">
-            </pizza-item>
+            <div class="panel-group">
+                <div class="panel panel-default card">
+                    <div class="panel-heading">
+                        <h2>We Serve:</h2>
+                    </div>
+                    <div class="panel-body">
+                        <ul class="list-group">
+                            <pizza-item v-for="pizza in list" v-bind:type="pizza.type"></pizza-item>
+                        </ul>
+                    </div>
+                </div>
+            </div> 
         </div>
         <script>
             Vue.component('pizza-item', {
                 props: ['type'],
-                template: '<div><span>{{ type }}</span><input type="button" v-on:click="add" value="+"></input><span>{{amount}}</span></div>',
+                template: '<li class="list-group-item"><input type="button" class="btn btn-default" v-on:click="add" value="+">{{ type }}</input><span class="badge">{{amount}}</span></li>',
                 data: function () {
                     return {
                         amount: 0

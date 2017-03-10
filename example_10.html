@@ -1,40 +1,28 @@
 <html>
     <head>
         <title>Vue.js Example 10</title>
+        <link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="styles/site.css">
-         <script src="lib/vue@2.2.1.js"></script>
-         <style>
-            #app {
-                width: 500px;
-                padding: 15px 25px;
-                text-align: left;
-            }
-
-            .panel input, .panel button {
-                font-size: 14px;
-            }
-
-            .panel input {
-                padding: 10px 15px;
-                width: 300px;
-            }
-
-            .panel button {
-                margin-left: 5px;
-                padding: 5px 10px;
-            }
-
-         </style>
+        <script src="lib/vue@2.2.1.js"></script>
     </head>
 
     <body>
         <div id="app">
-            <game-guess v-on:thenumber="checkNumber"></game-guess>
-            <div v-if="isCorrect">
-                Correct: {{number}}
-            </div>
-            <div v-if="!isCorrect && hasGuessed">
-                Sorry, Guess again
+            <div class="panel-group">
+                <div class="panel panel-default card">
+                    <div class="panel-heading">
+                        <h2>Guessing Game</h2>
+                    </div>
+                    <div class="panel-body">
+                        <game-guess v-on:thenumber="checkNumber"></game-guess>
+                        <div class="alert alert-success" v-if="isCorrect">
+                            Correct: {{number}}
+                        </div>
+                        <div class="alert alert-danger" v-if="!isCorrect && hasGuessed">
+                            Sorry, Guess again
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <script>

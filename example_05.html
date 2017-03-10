@@ -1,14 +1,19 @@
 <html>
     <head>
         <title>Vue.js Example 05</title>
+        <link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="styles/site.css">
         <script src="lib/vue@2.2.1.js"></script>
     </head>
 
     <body>
         <div id="app">
-           <p> Original Greeting: "{{ greeting }}"</p>
-           <p> Reverse Greeting: "{{ reverseGreeting }}"</p>
+            <div class="jumbotron">
+                <div class="container text-center">
+                    <p> Original Greeting: "{{ greeting }}"</p>
+                    <p> Reverse Greeting: "{{ reverseGreeting }}"</p>
+                </div>
+            </div>
         </div>
         <script>
             var app = new Vue({

@@ -1,9 +1,4 @@
-html, body {
-    margin: 0;
-    padding: 0;
-}
-body {
-    font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
-    font-size: 55px;
-    color: #34495e;
+#app {
+	width: 680px;
+	margin: 40px auto;
 }

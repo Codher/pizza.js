@@ -1,43 +1,31 @@
 <html>
     <head>
         <title>Vue.js Example 02</title>
+        <link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="styles/site.css">
         <script src="lib/vue@2.2.1.js"></script>
-        <style>
-            .article {
-                background: #eee;
-                font-size: 20px;
-                padding: 10px 25px;
-                border: 1px solid #ddd;
-                width: 350px;
-                height: 400px;
-                border-radius: 4px;
-                margin: 4px;
-            }
-            .article header {
-                font-size: 16px;
-            }
-
-            .article .body {
-                font-size: 14px;
-            }
-        </style>
     </head>
 
     <body>
-        <article class="article">
-            <header>
-                <h1> {{ title }}</h1>
-            </header>
-            <p class="body" v-html="content"></p>
-        </article>
+        <div id="app">
+            <div class="panel-group">
+                <div class="panel panel-default card">
+                    <div class="panel-heading">
+                        <h2>{{ title }}</h2>
+                        <h3>{{ subtitle }}</h3>
+                    </div>
+                    <div class="panel-body" v-html="content"></div>
+                </div>
+            </div>
+        </div>
         <script>
             var app = new Vue({
-                el: 'article',
+                el: '.card',
                 data: function () {
                     return {
                         title: 'Making our first Pizza !',
-                        content: '<i>All The good things are already in</i>:<br/><br/> Vue </br> CSS'
+                        subtitle: 'The good things are already in',
+                        content: 'Vue & CSS'
                     };
                 }
             });

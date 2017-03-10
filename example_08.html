@@ -1,8 +1,9 @@
 <html>
     <head>
         <title>Vue.js Example 08</title>
+        <link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="styles/site.css">
-         <script src="lib/vue@2.2.1.js"></script>
+        <script src="lib/vue@2.2.1.js"></script>
          <style>
              .cube {
                 border: 5px solid #eee;
@@ -23,10 +24,13 @@
     <body>
         <div id="app">
             <div class="cube" v-bind:style="{backgroundColor: color}"></div>
-            <red-btn v-on:color="makeRed"></red-btn>
-            <green-btn v-on:color="makeGreen"></green-btn>
-            <orange-btn v-on:color="makeOrange"></orange-btn>
-            <white-btn v-on:color="makeWhite"></white-btn>
+            <div class="btn-group" role="group">
+                <red-btn v-on:color="makeRed" class="btn btn-default"></red-btn>
+                <green-btn v-on:color="makeGreen" class="btn btn-default"></green-btn>
+                <orange-btn v-on:color="makeOrange" class="btn btn-default"></orange-btn>
+                <white-btn v-on:color="makeWhite" class="btn btn-default"></white-btn>
+            </div>
+            
         </div>
         <script>
             Vue.component('red-btn', {
