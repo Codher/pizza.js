@@ -1,0 +1,107 @@
+<!--
+    Example 11:
+        - Footer: Summary of the pizzas, total cost
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+	    <title>Vue.js Example 11</title>
+        <link rel="stylesheet" type="text/css" href="../bootstrap-3.3.7-dist/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../styles/site.css">
+        <script src="../lib/vue@2.2.1.js"></script>
+</head>
+<body>
+    <div id="shop">
+        <div class="container">
+            <div class="page-header">
+                <h1>{{ title }}</h1>
+            </div>
+            <p class="lead">
+                {{ description }}
+            </p>
+            <div>
+                <pizza-list></pizza-list>
+            </div>
+        </div>
+        <footer class="footer">
+            <div class="container">
+                <p class="text-muted">
+                    Hola !
+                </p>
+            </div>
+        </footer>
+    </div>
+    <script type="text/x-template" id="pizza-list-template">
+        <div class="row">
+            <pizza-item 
+                v-for="pizza in pizzas" 
+                v-bind:item="pizza" 
+                v-bind:key="pizza.id">
+            </pizza-item>
+        </div>
+    </script>
+
+    <script type="text/x-template" id="pizza-item-template">
+        <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+                <img v-bind:src="item.image" v-bind:alt="item.name">
+                <div class="caption">
+                    <h3>{{ item.name }}</h3>
+                    <p>
+                        <a href="#" class="btn btn-primary" role="button">Button</a>
+                        <a href="#" class="btn btn-default" role="button">Button</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </script>
+    
+    <script>
+        var pizzaItem = Vue.component('pizza-item', {
+            props: ['item'],
+            template: '#pizza-item-template',
+            data: function () {
+                return {
+
+                };
+            }
+        });
+
+        var pizzalist = Vue.component('pizza-list', {
+            template: '#pizza-list-template',
+            data: function () {
+                return {
+                    pizzas: [
+                        { id: '1', name: 'Margherita', price: '113', image: 'https://roomservice2.s3.amazonaws.com/Product/55274/RSxC8SLesEOEz2vzA2hqzA/SquareHighRes.png'},
+                        { id: '2', name: 'Prosciutto Cotto', price: '100', image: 'https://roomservice2.s3.amazonaws.com/Product/55275/TibN5Ta0qBWVlsCfNhQ/SquareHighRes.png'},
+                        { id: '3', name: 'Prosciutto Cotto Deluxe', price: '125', image: 'https://roomservice2.s3.amazonaws.com/Product/55276/DpiYEA2hS0CpTCoMtn1N8g/SquareHighRes.png'},
+                        { id: '4', name: 'Hawaii', price: '129', image: 'https://roomservice2.s3.amazonaws.com/Product/55277/9w3BwHyei0KBP9EI6RPrg/SquareHighRes.png'},
+                        { id: '5', name: 'Salumi', price: '113', image: 'https://roomservice2.s3.amazonaws.com/Product/55278/yNX2T8gWukWSn2QAw4Ltg/SquareHighRes.png'},
+                        { id: '6', name: 'Casper Braid Special', price: '125', image: 'https://roomservice2.s3.amazonaws.com/Product/55279/s5n9xU3ODEydLAadBqtAsQ/SquareHighRes.png'},
+                        { id: '7', name: 'Miss Wishbone', price: '125', image: 'https://roomservice2.s3.amazonaws.com/Product/55280/NGHp3bgM7UGhzEdqPG6eDQ/SquareHighRes.png'},
+                        { id: '8', name: 'Hottie', price: '125', image: 'https://roomservice2.s3.amazonaws.com/Product/55282/PfQAy4dShEWVneapPwH2xg/SquareHighRes.png'}
+                    ]
+                }
+            },
+            components: {
+                'pizza-item': pizzaItem
+            }
+        });
+
+        var shop = new Vue({
+            el: '#shop',
+            data: function () {
+                return {
+                    title: 'CodHer Pizza Place',
+                    description: 'Select form our best & famous pizza'
+
+                };
+            },
+            components: {
+                'pizza-list': pizzalist
+            }
+        });
+    </script>
+</body>
+</html>
