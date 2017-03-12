@@ -69,7 +69,7 @@
             {{ item.name }} ({{ item.quantity }})
             </li>
             <li class="list-group-item">
-                <span class="badge">{{ total }}</span>
+                <span class="badge">{{ getTotal() }}</span>
                 Total
             </li>
         </ul>
@@ -116,9 +116,23 @@
                     total: 0
                 }
             },
-            computed: {
-                total: function () {
-                    this.total = 1;
+            methods: {
+                getTotal: function () {
+                    var total = 0;
+                    var cart = this.cart;
+                    var pizzaKeys = Object.keys(cart);
+
+                    if (pizzaKeys.length === 0) {
+                        return total;
+                    }
+
+                    pizzaKeys.forEach(function (pizzaKey) {
+                        var amount = cart[pizzaKey].quantity;
+                        var price = cart[pizzaKey].price;
+                        total += (amount * price);
+                    });
+
+                    return total;
                 }
             }
         });
