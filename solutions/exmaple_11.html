@@ -21,23 +21,27 @@
                 {{ description }}
             </p>
             <div>
-                <pizza-list></pizza-list>
+                <pizza-list 
+                    v-on:shop="changeCart"
+                    v-bind:pizzas="pizzas">
+                </pizza-list>
             </div>
         </div>
         <footer class="footer">
             <div class="container">
                 <p class="text-muted">
-                    Hola !
+                    <pizza-cart v-bind:cart="cart"></pizza-cart>
                 </p>
             </div>
         </footer>
     </div>
     <script type="text/x-template" id="pizza-list-template">
         <div class="row">
-            <pizza-item 
+            <pizza-item
                 v-for="pizza in pizzas" 
                 v-bind:item="pizza" 
-                v-bind:key="pizza.id">
+                v-bind:key="pizza.id"
+                v-on:pizza="pizzaChange">
             </pizza-item>
         </div>
     </script>
@@ -48,44 +52,74 @@
                 <img v-bind:src="item.image" v-bind:alt="item.name">
                 <div class="caption">
                     <h3>{{ item.name }}</h3>
+                    <h4>{{ item.price }} kr.</h4>
                     <p>
-                        <a href="#" class="btn btn-primary" role="button">Button</a>
-                        <a href="#" class="btn btn-default" role="button">Button</a>
+                        <button type="button" v-on:click="add" class="btn btn-primary" role="button">+</button>
+                        <button type="button" v-on:click="remove" class="btn btn-default" role="button">-</button>
                     </p>
                 </div>
             </div>
         </div>
+    </script>
+
+    <script type="text/x-template" id="pizza-cart-template">
+        <ul class="list-group">
+            <li class="list-group-item" v-for="item in cart">
+            <span class="badge">{{ item.quantity * item.price }}</span>
+            {{ item.name }} ({{ item.quantity }})
+            </li>
+            <li class="list-group-item">
+                <span class="badge">{{ total }}</span>
+                Total
+            </li>
+        </ul>
     </script>
     
     <script>
         var pizzaItem = Vue.component('pizza-item', {
             props: ['item'],
             template: '#pizza-item-template',
-            data: function () {
-                return {
-
-                };
+            methods: {
+                add: function () {
+                    this.$emit('pizza', {
+                        action: 'add',
+                        pizza: this.item
+                    });
+                },
+                remove: function () {
+                    this.$emit('pizza', {
+                        action: 'remove',
+                        pizza: this.item
+                    });
+                }
             }
         });
 
         var pizzalist = Vue.component('pizza-list', {
             template: '#pizza-list-template',
-            data: function () {
-                return {
-                    pizzas: [
-                        { id: '1', name: 'Margherita', price: '113', image: 'https://roomservice2.s3.amazonaws.com/Product/55274/RSxC8SLesEOEz2vzA2hqzA/SquareHighRes.png'},
-                        { id: '2', name: 'Prosciutto Cotto', price: '100', image: 'https://roomservice2.s3.amazonaws.com/Product/55275/TibN5Ta0qBWVlsCfNhQ/SquareHighRes.png'},
-                        { id: '3', name: 'Prosciutto Cotto Deluxe', price: '125', image: 'https://roomservice2.s3.amazonaws.com/Product/55276/DpiYEA2hS0CpTCoMtn1N8g/SquareHighRes.png'},
-                        { id: '4', name: 'Hawaii', price: '129', image: 'https://roomservice2.s3.amazonaws.com/Product/55277/9w3BwHyei0KBP9EI6RPrg/SquareHighRes.png'},
-                        { id: '5', name: 'Salumi', price: '113', image: 'https://roomservice2.s3.amazonaws.com/Product/55278/yNX2T8gWukWSn2QAw4Ltg/SquareHighRes.png'},
-                        { id: '6', name: 'Casper Braid Special', price: '125', image: 'https://roomservice2.s3.amazonaws.com/Product/55279/s5n9xU3ODEydLAadBqtAsQ/SquareHighRes.png'},
-                        { id: '7', name: 'Miss Wishbone', price: '125', image: 'https://roomservice2.s3.amazonaws.com/Product/55280/NGHp3bgM7UGhzEdqPG6eDQ/SquareHighRes.png'},
-                        { id: '8', name: 'Hottie', price: '125', image: 'https://roomservice2.s3.amazonaws.com/Product/55282/PfQAy4dShEWVneapPwH2xg/SquareHighRes.png'}
-                    ]
-                }
-            },
+            props: ['pizzas'],
             components: {
                 'pizza-item': pizzaItem
+            },
+            methods: {
+                pizzaChange: function (options) {
+                    this.$emit('shop', options);
+                }
+            }
+        });
+
+        var pizzaCart = Vue.component('pizza-cart', {
+            template: '#pizza-cart-template',
+            props: ['cart'],
+            data: function () {
+                return {
+                    total: 0
+                }
+            },
+            computed: {
+                total: function () {
+                    this.total = 1;
+                }
             }
         });
 
@@ -94,12 +128,52 @@
             data: function () {
                 return {
                     title: 'CodHer Pizza Place',
-                    description: 'Select form our best & famous pizza'
-
+                    description: 'Select form our best & famous pizza',
+                    pizzas: [
+                        { id: '1', name: 'Margherita', price: '113', image: 'https://roomservice2.s3.amazonaws.com/Product/55274/RSxC8SLesEOEz2vzA2hqzA/SquareHighRes.png', quantity: 0},
+                        { id: '2', name: 'Prosciutto Cotto', price: '100', image: 'https://roomservice2.s3.amazonaws.com/Product/55275/TibN5Ta0qBWVlsCfNhQ/SquareHighRes.png', quantity: 0},
+                        { id: '3', name: 'Prosciutto Cotto Deluxe', price: '125', image: 'https://roomservice2.s3.amazonaws.com/Product/55276/DpiYEA2hS0CpTCoMtn1N8g/SquareHighRes.png', quantity: 0},
+                        { id: '4', name: 'Hawaii', price: '129', image: 'https://roomservice2.s3.amazonaws.com/Product/55277/9w3BwHyei0KBP9EI6RPrg/SquareHighRes.png', quantity: 0},
+                        { id: '5', name: 'Salumi', price: '113', image: 'https://roomservice2.s3.amazonaws.com/Product/55278/yNX2T8gWukWSn2QAw4Ltg/SquareHighRes.png', quantity: 0},
+                        { id: '6', name: 'Casper Braid Special', price: '125', image: 'https://roomservice2.s3.amazonaws.com/Product/55279/s5n9xU3ODEydLAadBqtAsQ/SquareHighRes.png', quantity: 0},
+                        { id: '7', name: 'Miss Wishbone', price: '125', image: 'https://roomservice2.s3.amazonaws.com/Product/55280/NGHp3bgM7UGhzEdqPG6eDQ/SquareHighRes.png', quantity: 0},
+                        { id: '8', name: 'Hottie', price: '125', image: 'https://roomservice2.s3.amazonaws.com/Product/55282/PfQAy4dShEWVneapPwH2xg/SquareHighRes.png', quantity: 0}
+                    ],
+                    cart: {
+                       
+                    }
                 };
             },
             components: {
-                'pizza-list': pizzalist
+                'pizza-list': pizzalist,
+                'pizza-cart': pizzaCart
+            },
+            methods: {
+                changeCart: function (item) {
+                    var action = item.action;
+                    var pizzaId = item.pizza.id;
+                    var pizzaItem = this.cart[pizzaId];
+                    var newCart = Object.assign({ }, this.cart);
+
+                    if (!pizzaItem) {
+                        pizzaItem = { };
+                        pizzaItem.name = item.pizza.name;
+                        pizzaItem.price = item.pizza.price;
+                        pizzaItem.quantity = item.pizza.quantity;
+                    }
+
+                    if (action === "add") {
+                        pizzaItem.quantity += 1;
+                    }
+
+                    if (action === 'remove' && pizzaItem.quantity > 0) {
+                        pizzaItem.quantity -= 1;
+                    }
+                    
+                    newCart[item.pizza.id] = pizzaItem;
+
+                    this.cart = Object.assign({ }, newCart);
+                }
             }
         });
     </script>
