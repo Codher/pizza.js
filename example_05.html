@@ -16,6 +16,18 @@
             </div>
         </div>
         <script>
+            /**
+                A computed field lets us compose a field.
+
+                In this case we create a field called: "reverseGreeting".
+
+                reverseGreeting is being computed ;)
+                
+                from greeting which we then reverse.
+
+                So sometimes it is more convenient to created computed fields 
+                (which can be composed / computed from different things) instead of function. 
+            */
             var app = new Vue({
                 el: '#app',
                 data: function () {
