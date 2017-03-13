@@ -33,6 +33,32 @@
             
         </div>
         <script>
+            /**
+                So passing information to our components through "props", that's
+                super easy.
+
+                But how we can get information back ?
+                How we can communicate between our Parent and the Childrens
+
+                To do that we use $emit
+
+                Dollar sign ? Emit ? Yea kinda scary
+
+                ¯\_(ツ)_/¯
+
+                This means we are emiting an event to our Parent.
+
+                Our component (eg: red-btn) emits an event called: color
+
+                Parent listens to this event by: "v-on:color".
+
+                We assign a function to when that event happens
+                    v-on:color="makeRed"
+
+                Can be read:
+                    On color event run the makeRed function
+
+            */
             Vue.component('red-btn', {
                 template: '<button v-on:click="change">Red</button>',
                 methods: {
@@ -101,6 +127,8 @@
         - When clicked it should change the cube's color
 -->
 <!--
+    [Optional]
+
     Example 08 (2):
         - Take the list from the previous example
         - Create a summary of total pizza ordered
