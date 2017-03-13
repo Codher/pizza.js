@@ -26,6 +26,14 @@
             </div>
         </div>
         <script>
+            /**
+                v-if is quite cool.
+
+                It lets us show / hide HTML elements based on properties.
+
+                In this case if the user has gussed the number a happy message will be shown
+                If not then "Sorry Guess again" will be displayed
+            */
             var gameGuess = Vue.component('game-guess', {
                 template: '<div class="panel"><input type="text" v-model="answer" placeholder="enter a number between 1 and 3"></input><button v-on:click="guess">Guess!</button></div>',
                 methods: {
