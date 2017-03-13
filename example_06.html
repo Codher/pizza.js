@@ -21,6 +21,31 @@
             </div>            
         </div>
         <script>
+            /**
+                Components are a reusable building blocks.
+
+                A component is constructed by:
+
+                    - Properties: a way to get information in
+                    - Template: a way to display data
+                    - Events: a way of exposing data
+
+                It gives us a way of splitting the Application into small
+                bits and encapsulate concerns, meaning: each component takes care of its own domain.
+
+                Eg: Cart componen
+
+                    - Will take care of displaying a list of items in our cart
+                    - Will take care of displaying total price.
+                    - Has a button go to payment
+
+                So in that way we can use Cart in different parts of our application:
+                    - Main page should display cart
+                    - List of products should display cart
+
+                And we know that it will always acts the same.
+
+            */
             Vue.component('pizza-item', {
                 props: ['type'],
                 template: '<div> {{ type }} </div>'
