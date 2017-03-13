@@ -23,6 +23,28 @@
             </div> 
         </div>
         <script>
+            /**
+                Lets take things a step forward.
+
+                We have a list of pizzas: margherita, hawaii, potato
+
+                Each pizza will be display by our "pizza-item" component.
+
+                To do that our "pizza-item" has a property: type.
+
+                To bind the type of pizza to our "pizza-item" type property we use:
+                    v-bind:type="pizza.type"
+
+                If you don't write v-bind then Vue will treat "pizza.type" as plain text and not
+                figure out that the type should be defered from our list.
+
+                ¯\_(ツ)_/¯
+
+                Each "pizza-item" component also has a button for adding more pizza !!
+
+                When we click the button it will increase the amount by 1.
+                
+            */
             Vue.component('pizza-item', {
                 props: ['type'],
                 template: '<li class="list-group-item"><input type="button" class="btn btn-default" v-on:click="add" value="+">{{ type }}</input><span class="badge">{{amount}}</span></li>',
