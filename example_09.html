@@ -22,7 +22,14 @@
             </div> 
         </div>
         <script>
+            /**
+                How we can style our components dynamically ?
+                So based on the properties it will change its appearance.
 
+                Remember Computed ? ;)
+
+                We bind our computed field to the class attribute in our component's HMTL.
+            */
             Vue.component('pizza-ingredient', {
                 template: '<li class="list-group-item ingredient" v-bind:class="stylingOptions">{{ingredient.name}} ({{ingredient.quantity}})</li>',
                 props: ['ingredient'],
