@@ -9,21 +9,21 @@
     <body>
         <div id="app">
             <ul class="list-group">
-                <li class="list-group-item" v-for="book in books">{{book.title}}</li>
+                <li class="list-group-item" v-for="book in library">{{book.title}}</li>
             </ul>
         </div>
         <script>
             /**
                 Sometimes we have a collection of data: Array.
 
-                In our books array we have 4 objects.
+                In our library array we have 4 objects (books).
 
                 Each object contain a title field.
 
-                To display all the titles we need to iterate on each object in our books array.
+                To display all the titles we need to iterate on each object in our library array.
 
-                To do that we use: v-for: (v-for="book in books")
-                Can be read as: for each book in books.
+                To do that we use: v-for: (v-for="book in library")
+                Can be read as: for each book in library.
 
                 Each time book will represent the next object in our books Array.
                 Which will let us reference its fields. 
@@ -32,7 +32,7 @@
                 el: '#app',
                 data: function () {
                     return {
-                        books: [
+                        library: [
                             { title: 'Microwaving for one' },
                             { title: 'I am almost Italian '},
                             { title: '100 pastas '},
