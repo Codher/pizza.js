@@ -19,13 +19,27 @@
             </div>
         </div>
         <script>
+            /**
+                The variables in the data section are called: fileds
+
+                We can decalre as many fileds as we want.
+
+                We have a title, subtitle and a content field.
+
+                Some field may contain HTML
+
+                We use v-html to render fields that contains html instead
+                of curly braces.
+
+                This tells Vue to render HTML instead of plain text
+            */
             var app = new Vue({
                 el: '.card',
                 data: function () {
                     return {
                         title: 'Making our first Pizza !',
                         subtitle: 'The good things are already in',
-                        content: 'Vue & CSS'
+                        content: '<b>Vue & CSS</b>'
                     };
                 }
             });
