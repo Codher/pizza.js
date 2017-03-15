@@ -31,11 +31,14 @@
 
                 It lets us show / hide HTML elements based on properties.
 
-                In this case if the user has gussed the number a happy message will be shown
-                If not then "Sorry Guess again" will be displayed
+                In this case if the user has guessed the number a success message will be shown.
+                If not then "Sorry Guess again" will be displayed.
             */
             var gameGuess = Vue.component('game-guess', {
-                template: '<div class="panel"><input type="text" v-model="answer" placeholder="enter a number between 1 and 3"></input><button v-on:click="guess">Guess!</button></div>',
+                template: `<div class="panel">
+                                <input type="text" v-model="answer" placeholder="enter a number between 1 and 3"></input>
+                                <button v-on:click="guess">Guess!</button>
+                            </div>`,
                 methods: {
                     guess: function () {
                         this.$emit('thenumber', this.answer);
@@ -53,6 +56,8 @@
                     }
                 },
                 created: function () {
+                    // "created" is a "lifecycle hook", and it's triggered when our component appears in the HTML.
+                    // the code we put here runs as soon as our component is created.
                     this.number = Math.floor((Math.random() * 3) + 1);
                 },
                 components: {
@@ -67,13 +72,22 @@
             });
         </script>
     </body>
+
+    <!-- we can define scoped styles, meaning they only apply to our component, not the whole app -->
+    <style scoped>
+        input {
+            width: 230px;
+        }
+    </style>
+
+
 <!-- 
     Example 10:
     Create a login screen:
-        - Textbox where the user enters password
+        - Textbox where the user enters the password
         - Button to login
 
         If the user enters "pizza1234"
-        hide the login and show "Welcom to our Pizza place !"
+        hide the login and show "Welcome to our Pizza place !"
         else display a message "try again" above the textbox
 -->

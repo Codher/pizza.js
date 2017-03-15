@@ -26,24 +26,32 @@
 
                 A component is constructed by:
 
-                    - Properties: a way to get information in
+                    - Properties: a way to get information in 
+                             _______
+                   data ==> |______|
+
                     - Template: a way to display data
+                            ___________
+                            | {{data}} |
+
                     - Events: a way of exposing data
+                            _______
+                           |______| ==> events(data)
 
                 It gives us a way of splitting the Application into small
                 bits and encapsulate concerns, meaning: each component takes care of its own domain.
 
-                Eg: Cart componen
+                Eg: Cart component
 
                     - Will take care of displaying a list of items in our cart
                     - Will take care of displaying total price.
-                    - Has a button go to payment
+                    - Has a button to go to payment
 
                 So in that way we can use Cart in different parts of our application:
-                    - Main page should display cart
-                    - List of products should display cart
+                    - Main page should display the cart
+                    - List of products should display the cart
 
-                And we know that it will always acts the same.
+                And we know that it will always act the same.
 
             */
             Vue.component('pizza-item', {
