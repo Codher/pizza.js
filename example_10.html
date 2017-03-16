@@ -7,7 +7,7 @@
     </head>
 
     <body>
-        <div id="app">
+        <div id="app" class="app--guess-game">
             <div class="panel-group">
                 <div class="panel panel-default card">
                     <div class="panel-heading">
@@ -37,7 +37,7 @@
             var gameGuess = Vue.component('game-guess', {
                 template: `<div class="panel">
                                 <input type="text" v-model="answer" placeholder="enter a number between 1 and 3"></input>
-                                <button v-on:click="guess">Guess!</button>
+                                <button v-on:click="guess">Guess</button>
                             </div>`,
                 methods: {
                     guess: function () {

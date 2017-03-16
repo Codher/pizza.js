@@ -7,3 +7,12 @@
 	margin: 40px auto;
 }
 
+.app--guess-game input {
+	width: 250px;
+	padding: 5px 15px;
+}
+
+.app--guess-game button {
+	padding: 7px;
+}
+
