@@ -24,13 +24,13 @@
         </div>
         <script>
             /**
-                Lets take things a step forward.
+                Let's take things a step forward.
 
                 We have a list of pizzas: margherita, hawaii, potato
 
-                Each pizza will be display by our "pizza-item" component.
+                Each pizza will be displayed by our "pizza-item" component.
 
-                To do that our "pizza-item" has a property: type.
+                To do that, our "pizza-item" has a property: "type".
 
                 To bind the type of pizza to our "pizza-item" type property we use:
                     v-bind:type="pizza.type"
@@ -47,7 +47,10 @@
             */
             Vue.component('pizza-item', {
                 props: ['type'],
-                template: '<li class="list-group-item"><input type="button" class="btn btn-default" v-on:click="add" value="+">{{ type }}</input><span class="badge">{{amount}}</span></li>',
+                template: `<li class="list-group-item">
+                                <input type="button" class="btn btn-default" v-on:click="add" value="+">{{ type }}</input>
+                                <span class="badge">{{amount}}</span>
+                            </li>`,
                 data: function () {
                     return {
                         amount: 0
