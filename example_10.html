@@ -56,8 +56,11 @@
                     }
                 },
                 created: function () {
-                    // "created" is a "lifecycle hook", and it's triggered when our component appears in the HTML.
-                    // the code we put here runs as soon as our component is created.
+                    /**
+                        "created" is a "lifecycle hook", 
+                        and it's triggered when our component appears in the HTML.
+                        the code we put here runs as soon as our component is created.
+                    */
                     this.number = Math.floor((Math.random() * 3) + 1);
                 },
                 components: {
